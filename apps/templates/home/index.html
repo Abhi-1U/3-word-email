@@ -3,41 +3,42 @@
 {% block title %} Dashboard {% endblock title %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="../../static/css/email_collapsible.css" />
 
 {% endblock stylesheets %}
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-      <!-- Sidear -->
-      <div class="col-md-2 bg-light d-none d-md-block sidebar">
-        <div class="left-sidebar">
-            <ul class="nav flex-column sidebar-nav">
-                {% for mail in emails%}
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">
-                    <svg
-                      class="bi bi-chevron-right"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    mail
-                  </a>
-                </li> 
-                {% endfor %}
-             </ul>
-        </div>
+  <div class="row">
+    <div class="col-md-12 bg-light d-none d-md-block sidebar" >
+      <p> Emails in the Last 96 Hours</p>
+          <ul class="nav flex-column">
+              {% for i in range(0,message_count) %}
+              <li class="nav-item">
+                <button class="accordion"><h4><b>{{emails[i]["result"]["response"]}}</b></h4> <br/> {{messages[i].from_[0]['name']}} | {{messages[i].from_[0]['email']}}<br/> At {{dates[i]}}</button>
+                <div class="panel">
+                  <p>Subject : {{messages[i].subject}}</p><br/>
+                    <iframe style="width: 100%; height: 710px; overflow: auto;" srcdoc="{{messages[i].body | e}}"></iframe>
+                  </div> 
+              </li> 
+              {% endfor %}
+           </ul>
       </div>
     </div>
-  </div>
+</div>
 
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 {% endblock content %}

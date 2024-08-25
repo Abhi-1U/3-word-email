@@ -41,8 +41,3 @@ def authorized():
 
     return redirect(url_for("login"))
 
-@blueprint.route("/", methods=["GET"])
-def home():
-  
-  if session.get("grant_id") is None:
-    return redirect('/auth')

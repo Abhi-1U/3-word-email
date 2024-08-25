@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.accordion {
+    background-color: #080036;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5px;
+}
+.accordion:hover {
+    background-color: #4f52e9;
+}
+.accordion:after {
+    content: '\002B'; /* Unicode character for "+" sign */
+    color: #6b6969;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+.active:after {
+    content: "\2212"; /* Unicode character for "-" sign */
+}
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.panel p {
+    padding: 10px 0;
+    margin: 0;
+}
