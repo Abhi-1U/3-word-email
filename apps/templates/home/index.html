@@ -8,17 +8,45 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="flex-container">
   <div class="row">
-    <div class="col-md-12 bg-light d-none d-md-block sidebar" >
-      <p> Emails in the Last 96 Hours</p>
+    <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
+        <div class="mb-3" style="padding-left: 3%;">
+          You have {{message_count}} Emails in the Last {{td}} Hours |
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=24';">24 H</button>
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=48';">48 H</button>
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=72';">72 H</button>
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=96';">96 H</button>
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=168';">7 D</button>
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=336';">14 D</button>
+        </div>
           <ul class="nav flex-column">
+              {% if message_count == 0 %}
+              <div class="mb-3" style="padding-left: 3%;">
+                Looks like you have no new Emails 😄
+              </div>
+              {% endif %}
               {% for i in range(0,message_count) %}
               <li class="nav-item">
-                <button class="accordion"><h4><b>{{emails[i]["result"]["response"]}}</b></h4> <br/> {{messages[i].from_[0]['name']}} | {{messages[i].from_[0]['email']}}<br/> At {{dates[i]}}</button>
+                <button class="accordion">
+                  <div class="threewords"><b>{{emails[i]["result"]["response"]}}</b></div> 
+                  <br/>
+                  {% set senders = (messages[i].from_ |length) %}
+                  {% for j in range(0,senders) %} 
+                  {{messages[i].from_[j]['name']}} | {{messages[i].from_[j]['email']}} <br/> 
+                  {% endfor %}
+                  At {{dates[i]}}</button>
                 <div class="panel">
                   <p>Subject : {{messages[i].subject}}</p><br/>
-                    <iframe style="width: 100%; height: 710px; overflow: auto;" srcdoc="{{messages[i].body | e}}"></iframe>
+                    <iframe style="width: 100%; height: 400px; overflow: auto;" srcdoc="{{messages[i].body | e}}"></iframe>
+                    <div>
+                      <form class="form-inline my-2 my-lg-0">
+                        <div class="mb-3">
+                          Quick Reply : <input type="text" hidden value="{{messages[i].id}}" /> <input type="text" class="form-control" id="reply" aria-describedby="reply">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Reply</button>
+                        </div>
+                      </form>
+                    </div>
                   </div> 
               </li> 
               {% endfor %}

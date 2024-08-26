@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
 }
 .accordion {
-    background-color: #080036;
+    background-color: #343a40;
     color: #ffffff;
     cursor: pointer;
     padding: 18px;
@@ -15,7 +15,7 @@ body {
     margin-bottom: 5px;
 }
 .accordion:hover {
-    background-color: #4f52e9;
+    background-color: #040507;
 }
 .accordion:after {
     content: '\002B'; /* Unicode character for "+" sign */
@@ -29,7 +29,7 @@ body {
 }
 .panel {
     padding: 0 18px;
-    background-color: white;
+    background-color: rgb(180, 180, 180);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
