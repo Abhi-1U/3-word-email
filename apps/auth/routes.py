@@ -38,6 +38,5 @@ def authorized():
 
     exchange = nylas.auth.exchange_code_for_token(exchangeRequest)
     session["grant_id"] = exchange.grant_id
-
     return redirect(url_for("login"))
 

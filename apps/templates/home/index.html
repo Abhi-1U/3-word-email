@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Dashboard {% endblock title %}
+{% block title %} Reply {% endblock title %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="../../static/css/email_collapsible.css" />
@@ -32,17 +32,27 @@
                   <div class="threewords"><b>{{emails[i]["result"]["response"]}}</b></div> 
                   <br/>
                   {% set senders = (messages[i].from_ |length) %}
+                  {% set folder_len = folders[i] | length %}
                   {% for j in range(0,senders) %} 
                   {{messages[i].from_[j]['name']}} | {{messages[i].from_[j]['email']}} <br/> 
+                  {% endfor %}
+                  {% for j in range(0,folder_len) %}
+                  {% if (j== (folder_len-1)) %}
+                    {{folders[i][j]|replace("CATEGORY_", "")|replace("IMPORTANT","★")}} |
+                  {% else %}
+                  {{folders[i][j]|replace("CATEGORY_", "")|replace("IMPORTANT","★")}}
+                  {% endif %}
                   {% endfor %}
                   At {{dates[i]}}</button>
                 <div class="panel">
                   <p>Subject : {{messages[i].subject}}</p><br/>
                     <iframe style="width: 100%; height: 400px; overflow: auto;" srcdoc="{{messages[i].body | e}}"></iframe>
                     <div>
-                      <form class="form-inline my-2 my-lg-0">
+                      <form class="form-inline my-2 my-lg-0" method="POST" action="/reply">
                         <div class="mb-3">
-                          Quick Reply : <input type="text" hidden value="{{messages[i].id}}" /> <input type="text" class="form-control" id="reply" aria-describedby="reply">
+                          Quick Reply : <input type="text" hidden id="message_id" name="message_id" value="{{messages[i].id}}" />
+                          <input type="text" hidden id="reply_type" name="reply_type" value="DRAFT" />
+                           <input type="text" class="form-control" id="reply" name="reply" aria-describedby="reply">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Reply</button>
                         </div>
                       </form>
