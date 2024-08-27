@@ -1,8 +1,6 @@
-import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_session.__init__ import Session
-from nylas import Client
 from importlib import import_module
 
 def register_routes(app):

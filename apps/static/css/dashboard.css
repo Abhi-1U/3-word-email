@@ -9,8 +9,9 @@
   bottom: 0;
   top: 0;
   z-index: 100;
+  overflow: hidden;
   padding: 10px 5px 10px 5px;
-  border-right: 1px solid #d3d3d3;
-  border-left:  1px solid #d3d3d3;
+  border-right: 0px solid #d3d3d3;
+  border-left:  0px solid #d3d3d3;
 }
 

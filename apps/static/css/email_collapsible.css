@@ -22,7 +22,7 @@ body {
     color: #6b6969;
     font-weight: bold;
     float: right;
-    margin-left: 5px;
+    margin-left: 0px;
 }
 .active:after {
     content: "\2212"; /* Unicode character for "-" sign */
@@ -36,5 +36,4 @@ body {
 }
 .panel p {
     padding: 10px 0;
-    margin: 0;
 }

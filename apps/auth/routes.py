@@ -1,9 +1,7 @@
-from flask import request, redirect, url_for, session, jsonify
+from flask import request, redirect, url_for, session
 from nylas.models.auth import URLForAuthenticationConfig
 from nylas.models.auth import CodeExchangeRequest
 from nylas import Client
-from datetime import datetime, timedelta
-from flask_session.__init__ import Session
 import os
 from apps.auth  import blueprint
 

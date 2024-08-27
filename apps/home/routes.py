@@ -1,9 +1,6 @@
-
-from jinja2 import TemplateNotFound
-from flask import render_template, request, redirect, url_for, session, jsonify
+from flask import render_template, request, redirect, session, jsonify
 from nylas import Client
 from datetime import datetime, timedelta
-from flask_session.__init__ import Session
 import os
 from apps.home  import blueprint
 from apps.ai.cloudflare_llm import run_llama, compose_reply
@@ -20,7 +17,6 @@ def reply():
     message_id = request.form['message_id']
     reply = request.form['reply']
     reply_type = request.form['reply_type']
-    #ai_generated_reply = compose_reply()
     if reply_type == "DRAFT":
       try:
         message = nylas.messages.find(session["grant_id"], message_id)

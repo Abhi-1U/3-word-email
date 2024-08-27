@@ -8,7 +8,7 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class="flex-container">
+<div class="flex-container" style="overflow: hidden;">
   <div class="row">
     <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
         <div class="mb-3" style="padding-left: 3%;">
@@ -46,7 +46,7 @@
                   At {{dates[i]}}</button>
                 <div class="panel">
                   <p>Subject : {{messages[i].subject}}</p><br/>
-                    <iframe style="width: 100%; height: 400px; overflow: auto;" srcdoc="{{messages[i].body | e}}"></iframe>
+                    <iframe style="width: 100%; height: 400px; overflow:auto;" srcdoc="{{messages[i].body | e}}"></iframe>
                     <div>
                       <form class="form-inline my-2 my-lg-0" method="POST" action="/reply">
                         <div class="mb-3">

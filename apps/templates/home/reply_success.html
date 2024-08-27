@@ -8,17 +8,17 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class="flex-container" onload="document.getElementsByClassName('accordion').click();">
+<div class="flex-container" style="overflow: hidden;">
     <div class="row">
         <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
             <div class="mb-3" style="padding-left: 3%;">
                 {{success_message}}<br/>
-                You can now
+                You can now go back to your emails.
                 <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/?timedelta=24';"> Return</button>
-                back to your emails.
+                
             </div>
             <ul class="nav flex-column">
-                <button class="accordion">
+                <button class="accordion" id="accordion">
                     <div class="threewords"><b>Re : {{threewords}}</b></div> 
                     <br/>
                     {% set senders = (message.from_ |length) %}
