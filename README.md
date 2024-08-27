@@ -23,7 +23,8 @@ get caught up Looking at old/irrelevant emails repeateadly.
 
 ## Future Improvements
 
-1. LogOut functionality
+1. Caching and storing the results for faster load times.
+2. Possibilities for many more enhancements remain open as it is a project built in a hackathon event.
 
 
 
@@ -47,3 +48,22 @@ FLASK_APP="index.py"
 
 Install common Flask and Nylas dependencies from the `requirements.txt`.
 No dependencies for cloudflare AI workers needed.
+
+
+## Revoking Gmail/Email access from nylas
+
+After you have tested the app and want to disconnect the nylas API from your Gmail/Email account, you can revoke access from 
+Google/Provider account settings > Data from apps and services you use > Third-party apps & services > Nylas 
+
+
+## Warning :
+
+```
+Use this project at your own risk, by using the project you fully understand the risks associated with linking email access to
+third party projects. 
+Read privacy policy of nylas/cloudflare at their respective websites.
+This project is licensed under MIT License and is provided as is without any warranty.
+As the author of this project I will not be liable for any damages/liabilities caused by using this project/app.
+```
+
+## License : MIT License

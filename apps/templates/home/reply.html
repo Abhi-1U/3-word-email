@@ -39,11 +39,13 @@
                         <form method="POST" action="/reply">
                             <div class="mb-3">
                               AI Generated Reply : <input type="text" hidden id="message_id" name="message_id" value="{{message.id}}" />
-                              <input type="text" hidden id="reply_type" name="reply_type" value="FINAL" /><br/>
+                              <input type="text" hidden id="reply_type" name="reply_type" value="FINAL" />
+                              <input type="text" hidden id="threewords" name="threewords" value="{{threewords}}" /><br/>
                                <textarea class="form-control" id="reply" name="reply" rows="12">{{reply}}</textarea><br/>
                               <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Send</button>
                             </div>
                           </form>
+                          <div class="mb-3"><button class="btn btn-outline-primary my-2 my-sm-0" onclick="save_draft()">save</button></div>
                     </div>
                 </div>
             </ul>
@@ -63,6 +65,35 @@
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
+    }
+    async function save_draft(data) {
+        const formData = new FormData();
+        formData.append("reply_type","LATER");
+        formData.append("message_id",document.getElementById("message_id").value);
+        formData.append("threewords",document.getElementById("threewords").value);
+        formData.append("reply", document.getElementById("reply").value);
+        try {
+            const response = await fetch("/reply", {
+            method: "POST",
+            body: formData,
+        });
+        message = await response.json();
+        console.log(message["message"]);
+        window.alert(message["message"]);
+        } catch (e) {
+        console.error(e);
+    }
+    }
+    function old_save_draft(){
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/reply", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "reply_type": "LATER",
+            "message_id": document.getElementById("message_id"),
+            "threewords": document.getElementById("threewords"),
+            "reply": document.getElementById("reply")
+        }));
     }
 </script>
 

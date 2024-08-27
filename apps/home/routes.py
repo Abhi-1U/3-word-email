@@ -31,6 +31,42 @@ def reply():
                              message=message.data,folder=message.data.folders,date=date)
       except Exception as e:
         return f'{e}'  
+    if reply_type == "FINAL":
+      try:
+        message = nylas.messages.find(session["grant_id"], message_id)
+        draft = nylas.drafts.create(session["grant_id"],
+                                    request_body={
+                                      "to": message.data.from_,
+                                      "reply_to": message.data.to,
+                                      "subject": "Re: " + message.data.subject,
+                                      "body": reply,
+                                      "thread_id": message.data.thread_id}
+                                    )
+        draftSent = nylas.drafts.send(session["grant_id"],draft[0].id)
+        success_message = "Your reply has been sent successfully 🚀"
+        date=datetime.fromtimestamp(int(draft.data.date)).strftime('%d-%m-%Y %H:%M:%S')
+        return render_template('home/reply_success.html',success_message=success_message,threewords= request.form['threewords'],
+                             message=draft.data,folder=draft.data.folders,date=date)
+      except Exception as e:
+        return f'{e}'
+    if reply_type == "LATER":
+      try:
+        message = nylas.messages.find(session["grant_id"], message_id)
+        message.data.from_
+        draft = nylas.drafts.create(session["grant_id"],
+                                    request_body={
+                                      "to": message.data.from_,
+                                      "reply_to": message.data.to,
+                                      "subject": "Re: " + message.data.subject,
+                                      "body": reply,
+                                      "thread_id": message.data.thread_id}
+                                    )
+        success_message = "Your reply has been saved as draft successfully 🚀"
+        date=datetime.fromtimestamp(int(draft.data.date)).strftime('%d-%m-%Y %H:%M:%S')
+        return jsonify({"message":success_message})
+      except Exception as e:
+        return f'{e}'  
+
     
 
 
