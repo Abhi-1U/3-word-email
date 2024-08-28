@@ -52,6 +52,6 @@ def revoke():
       return redirect("/")
   if request.method == "GET":
     if session.get("grant_id") is None:
-      return "/"
+      return redirect('/')
     else:
       return render_template('auth/revoke.html') 
