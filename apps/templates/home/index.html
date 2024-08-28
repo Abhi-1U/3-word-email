@@ -11,7 +11,7 @@
 <div class="flex-container" style="overflow: hidden;">
   <div class="row">
     <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
-        <div class="mb-3" style="padding-left: 3%;">
+        <div class="mb-3" style="padding-left: 20px;">
           You have {{message_count}} Emails in the Last {{td}} Hours |
           <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=24';">24 H</button>
           <button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.href='/?timedelta=48';">48 H</button>
@@ -22,7 +22,7 @@
         </div>
           <ul class="nav flex-column">
               {% if message_count == 0 %}
-              <div class="mb-3" style="padding-left: 1%;">
+              <div class="mb-3" style="padding-left: 20px;">
                 Looks like you have no new Emails 😄
               </div>
               {% endif %}

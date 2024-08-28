@@ -36,7 +36,7 @@ def reply():
                                     request_body={
                                       "to": message.data.from_,
                                       "reply_to": message.data.to,
-                                      "subject": "Re: " + message.data.subject,
+                                      "subject":  message.data.subject,
                                       "body": reply,
                                       "thread_id": message.data.thread_id}
                                     )
@@ -55,7 +55,7 @@ def reply():
                                     request_body={
                                       "to": message.data.from_,
                                       "reply_to": message.data.to,
-                                      "subject": "Re: " + message.data.subject,
+                                      "subject": message.data.subject,
                                       "body": reply,
                                       "thread_id": message.data.thread_id}
                                     )
