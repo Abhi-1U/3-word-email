@@ -11,8 +11,10 @@ nylas = Client(
     api_uri = os.environ.get("NYLAS_API_URI"),
   )
 
-@blueprint.route("/reply", methods=["POST"])
+@blueprint.route("/reply", methods=["GET","POST"])
 def reply():
+  if request.method == 'GET':
+    return redirect('/')
   if request.method == 'POST':
     message_id = request.form['message_id']
     reply = request.form['reply']
@@ -70,9 +72,7 @@ def reply():
 def index():
   if session.get("grant_id") is None:
     return redirect('/auth')
-  td = 24
-  
-    
+  td = 24  
   if request.method == 'GET':
     if (request.args.get('timedelta') != None) :
       try:

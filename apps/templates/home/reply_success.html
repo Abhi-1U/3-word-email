@@ -34,7 +34,7 @@
                     {% endif %}
                     {% endfor %}
                     At {{date}}</button>
-                <div class="panel">
+                <div class="panel" style="max-height: fit-content;">
                     <p>Subject :{{message.subject}}</p><br/>
                     <iframe style="width: 100%; height: 400px; overflow: auto;" srcdoc="{{message.body | e}}"></iframe>
                 </div>
@@ -42,19 +42,5 @@
         </div>
     </div>
 </div>
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    for (var i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
-    }
-</script>
 
 {% endblock content %}
