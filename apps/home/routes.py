@@ -99,6 +99,3 @@ def index():
                            td=td, folders=folder_categories)
   except Exception as e:
     return f'{e}'  
-    
-
-    

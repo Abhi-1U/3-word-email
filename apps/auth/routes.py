@@ -4,7 +4,7 @@ from nylas.models.auth import CodeExchangeRequest
 from nylas import Client
 import os
 from apps.auth  import blueprint
-
+from flask import session,render_template
 
 
 nylas = Client(
@@ -23,7 +23,7 @@ def login():
 
     return redirect(url)
   else:
-    return f'{session["grant_id"]}' 
+    return redirect('/') 
 
 
 @blueprint.route("/oauth/exchange", methods=["GET"])
@@ -36,5 +36,22 @@ def authorized():
 
     exchange = nylas.auth.exchange_code_for_token(exchangeRequest)
     session["grant_id"] = exchange.grant_id
-    return redirect(url_for("login"))
+    return redirect("/")
 
+@blueprint.route("/revoke", methods=["GET","POST"])
+def revoke():
+  if request.method == "POST":
+    if request.form['delete_confirmation'] == "TRUE":
+      try:
+        delete_response = nylas.grants.destroy(session["grant_id"])
+        session.clear()
+        return redirect('/')
+      except Exception as e:
+        return f"{e}"
+    else:
+      return redirect("/")
+  if request.method == "GET":
+    if session.get("grant_id") is None:
+      return "/"
+    else:
+      return render_template('auth/revoke.html') 
