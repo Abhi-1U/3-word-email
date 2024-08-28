@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Welcome {% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="../../static/css/email_collapsible.css" />
+
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="col-md-12  flex-container bg-light  md-block accordionblock" >
+    <div>
+    <form class="form-inline my-2 my-lg-0" method="POST" action="/auth">
+        <div class="mb-3" style="padding-left: 1%;">
+            <b>Login with your Email provider:</b><br/>
+            <input type="text" hidden id="grant_login" name="grant_login" value="TRUE" />
+            <p>To access 3 word email you need to login with your preffered email provider and grant access to Nylas API <br/>
+            </p>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Continue</button>
+        </div>
+        </form>
+    </div>
+    <div class="panel" style="max-height: fit-content;">
+        
+            <div class="mb-3" >
+                This project is open source and the licensed under MIT license, by continuing to use this app you accept the License and understand the risks involved. <br/>
+                As the Developer of this project I provide absolutely no warranties and will not be responsible for any liabilities / damages that may arise using this app.<br/>
+                Read the source code <a class="btn btn-outline-primary my-2 my-sm-0" href='https://github.com/Abhi-1U/nylas-3-word-email'>here</a>
+            </div>
+    </div>
+    <div class="panel" style="max-height: fit-content;">
+        <pre>
+MIT License
+
+Copyright (c) 2024 Abhishek Ulayil
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+        </pre>
+    </div>
+</div> 
+
+{% endblock content %}

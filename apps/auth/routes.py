@@ -12,19 +12,18 @@ nylas = Client(
     api_uri = os.environ.get("NYLAS_API_URI"),
   )
 
-@blueprint.route("/auth", methods=["GET"])
+@blueprint.route("/auth", methods=["GET","POST"])
 def login():
-  
-  if session.get("grant_id") is None:
-    config = URLForAuthenticationConfig({"client_id": os.environ.get("NYLAS_CLIENT_ID"), 
+  if request.method == "POST":
+    if request.form['grant_login'] == "TRUE" and session.get("grant_id") is None:
+      config = URLForAuthenticationConfig({"client_id": os.environ.get("NYLAS_CLIENT_ID"), 
         "redirect_uri" : "http://localhost:5000/oauth/exchange"})
-
-    url = nylas.auth.url_for_oauth2(config)
-
-    return redirect(url)
-  else:
-    return redirect('/') 
-
+      url = nylas.auth.url_for_oauth2(config)
+      return redirect(url)
+    else:
+      return redirect('/') 
+  if request.method == "GET":
+    return render_template('auth/grant.html')
 
 @blueprint.route("/oauth/exchange", methods=["GET"])
 def authorized():

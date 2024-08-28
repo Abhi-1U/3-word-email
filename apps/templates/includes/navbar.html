@@ -8,7 +8,10 @@
      
     </ul>
     <form class="form-inline my-2 my-lg-0" method="get">
+      {% if '/auth' in request.path %}
+      {% else %}
       <a class="btn btn-outline-danger my-2 my-sm-0"  href='/revoke' >Revoke</a>
+      {% endif %}     
     </form>
   </div>
 </nav>
