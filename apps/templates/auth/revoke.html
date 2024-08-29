@@ -8,25 +8,38 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class="col-md-12  flex-container bg-light  md-block accordionblock" >
-    <div class="mb-3" style="padding-left: 20px;">
-        You can revoke Nylas Grant for 3 word email or go 
+<div class="flex-container" style="overflow: hidden;"></div>
+    <div class="row">
+        <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
+            <div class="mb-3" style="padding-left: 20px;">
+                You can revoke Nylas Grant for 3 word email or go 
         <a class="btn btn-outline-primary my-2 my-sm-0" href='/'> Back</a>
-    </div>
-    <div class="panel" style="max-height: fit-content;">
-        <div>
-            <form class="form-inline my-2 my-lg-0" method="POST" action="/revoke">
-            <div class="mb-3">
-                <b>Revoke Nylas Grant :</b><br/>
-                <input type="text" hidden id="delete_confirmation" name="delete_confirmation" value="TRUE" />
-                <p>Your Nylas grant will be revoked from 3 word email and will log you out of this application.<br/>
-                If you want to use this app again you will have to re-authenticate with nylas.<br/>
-                Proceed with caution.</p>
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">revoke grant</button>
+                
             </div>
-            </form>
-        </div> 
+            <ul class="nav flex-column">
+                <button class="accordion" id="accordion">
+                    <div class="threewords"><b>Revoke Nylas Grant</b></div> 
+                    <br/>
+                    
+                    3 word email | Settings <br/> 
+                    ★ IMPORTANT SYSTEM | At 29-08-2024</button>
+                <div class="panel" style="max-height: fit-content;">
+                    <p>Subject :Revoke Nylas Grant</p><br/>
+                    <form class="form-inline my-2 my-lg-0" method="POST" action="/revoke">
+                        <div class="mb-3">
+                            <b>Revoke Nylas Grant :</b><br/>
+                            <input type="text" hidden id="delete_confirmation" name="delete_confirmation" value="TRUE" />
+                            <p>Your Nylas grant will be revoked from 3 word email and will log you out of this application.<br/>
+                            If you want to use this app again you will have to re-authenticate with nylas.<br/>
+                            Proceed with caution.</p>
+                            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">revoke grant</button>
+                        </div>
+                        </form>
+                </div>
+            </ul>
+        </div>
     </div>
-</div> 
+</div>
+
 
 {% endblock content %}
