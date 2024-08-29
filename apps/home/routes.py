@@ -71,13 +71,13 @@ def reply():
 def index():
   if session.get("grant_id") is None:
     return redirect('/auth')
-  td = 24  
+  td = 2
   if request.method == 'GET':
     if (request.args.get('timedelta') != None) :
       try:
         td =  int(request.args.get('timedelta'))
       except ValueError:
-        td = 24
+        td = 2
   yesterday = datetime.today() - timedelta(hours=td)
   query_params = {"received_after": str(yesterday.strftime('%s'))}
   try:
