@@ -29,7 +29,7 @@
               {% for i in range(0,message_count) %}
               <li class="nav-item">
                 <button class="accordion">
-                  <div class="threewords"><b>{{emails[i]["result"]["response"]}}</b></div> 
+                  <div class="threewords"><b>{{emails[i]}}</b></div> 
                   <br/>
                   {% set senders = (messages[i].from_ |length) %}
                   {% set folder_len = folders[i] | length %}
