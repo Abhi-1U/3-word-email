@@ -27,8 +27,9 @@
                   <button class="accordion">
                     <div class="threewords"><b>3 word email</b></div> 
                     <br/>
-                    Abhishek Ulayil | Developer<br/> 
-                    ★  INBOX  SYSTEM | At 29-08-2024</button>
+                    Abhishek Ulayil | Developer<br/>
+                    <span class="category"> 
+                    ★  PROMOTIONS  SYSTEM | At 29-08-2024</span></button>
                   <div class="panel">
                     <p>Subject : 3 word email : Browse through your E-mails quickly</p><br/>
                     <div class="mb-3" >
@@ -53,7 +54,8 @@
                         <div class="threewords"><b>App Usage Disclaimer</b></div> 
                         <br/>
                         Abhishek Ulayil | Developer <br/> 
-                        ★  INBOX  SYSTEM | At 29-08-2024</button>
+                        <span class="category"> 
+                        ★  DISCLAIMER  SYSTEM | At 29-08-2024</span></button>
                         <div class="panel">
                             <p>Subject : Read before you link your email</p><br/>
                               
@@ -69,7 +71,8 @@
                         <div class="threewords"><b>MIT License File</b></div> 
                         <br/>
                         Abhishek Ulayil | Developer<br/> 
-                        ★  INBOX  SYSTEM  | At 29-08-2024</button>
+                        <span class="category"> 
+                        ★  LICENSE  SYSTEM  | At 29-08-2024</span></button>
                         <div class="panel">
                             <p>Subject : This app is licensed under MIT LICENSE</p><br/>
                               
@@ -118,5 +121,39 @@ SOFTWARE.<br/>
               }
           });
       }
+    var categories = document.getElementsByClassName("category");
+    for (var j = 0;j<categories.length;j++) {
+      var cat_text = categories[j].textContent;
+      const regex1 = "UPDATES";
+      const regex2 = "FORUM";
+      const regex3 = "PROMOTIONS";
+      const regex4 = "SOCIAL";
+      const regex5 = "DISCLAIMER";
+      const regex6 = "LICENSE";
+      if (cat_text.match(regex1) != null) {
+        acc[j].style.background = '#FFFAA0';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex2) != null) {
+        acc[j].style.background = '#C3B1E1';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex3) != null) {
+        acc[j].style.background = '#C1E1C1';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex4) != null) {
+        acc[j].style.background = '#A7C7E7';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex5) != null) {
+        acc[j].style.background = '#FAA0A0';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex6) != null) {
+        acc[j].style.background = '#FAC898';
+        acc[j].style.color = '#000000';
+      }
+    }
   </script>
 {% endblock content %}

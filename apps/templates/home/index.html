@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Reply {% endblock title %}
+{% block title %} Home {% endblock title %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="../../static/css/email_collapsible.css" />
@@ -30,12 +30,14 @@
               <li class="nav-item">
                 <button class="accordion">
                   <div class="threewords"><b>{{emails[i]}}</b></div> 
-                  <br/>
+                  <br/><span>
                   {% set senders = (messages[i].from_ |length) %}
                   {% set folder_len = folders[i] | length %}
                   {% for j in range(0,senders) %} 
                   {{messages[i].from_[j]['name']}} | {{messages[i].from_[j]['email']}} <br/> 
                   {% endfor %}
+                  </span>
+                  <span class="category">
                   {% for j in range(0,folder_len) %}
                   {% if (j== (folder_len-1)) %}
                     {{folders[i][j]|replace("CATEGORY_", "")|replace("IMPORTANT","★")}} |
@@ -43,7 +45,7 @@
                   {{folders[i][j]|replace("CATEGORY_", "")|replace("IMPORTANT","★")}}
                   {% endif %}
                   {% endfor %}
-                  At {{dates[i]}}</button>
+                  At {{dates[i]}}</span></button>
                 <div class="panel">
                   <p>Subject : {{messages[i].subject}}</p><br/>
                     <iframe style="width: 100%; height: 400px; overflow:auto;" srcdoc="{{messages[i].body | e}}"></iframe>
@@ -77,6 +79,30 @@
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
+    }
+    var categories = document.getElementsByClassName("category");
+    for (var j = 0;j<categories.length;j++) {
+      var cat_text = categories[j].textContent;
+      const regex1 = "UPDATES";
+      const regex2 = "FORUM";
+      const regex3 = "PROMOTIONS";
+      const regex4 = "SOCIAL";
+      if (cat_text.match(regex1) != null) {
+        acc[j].style.background = '#FFFAA0';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex2) != null) {
+        acc[j].style.background = '#C3B1E1';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex3) != null) {
+        acc[j].style.background = '#C1E1C1';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex4) != null) {
+        acc[j].style.background = '#A7C7E7';
+        acc[j].style.color = '#000000';
+      }
     }
 </script>
 {% endblock content %}
