@@ -4,7 +4,7 @@ import os
 def run_llama(subject,body):
     CLOUDFLARE_ACCOUNT_ID = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
     CLOUDFLARE_AI_TOKEN = os.environ.get("CLOUDFLARE_AI_TOKEN")
-    MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8"
+    MODEL = "@cf/meta/llama-3-8b-instruct"
     API_BASE_URL = f"https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/run/"
     headers = {"Authorization": f"Bearer {CLOUDFLARE_AI_TOKEN}"}
     inputs = [{ "role": "system", "content": "You are a friendly assistant that helps sort emails" },
@@ -16,7 +16,7 @@ def run_llama(subject,body):
 def compose_reply(reply,body):
     CLOUDFLARE_ACCOUNT_ID = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
     CLOUDFLARE_AI_TOKEN = os.environ.get("CLOUDFLARE_AI_TOKEN")
-    MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8"
+    MODEL = "@cf/meta/llama-3-8b-instruct"
     API_BASE_URL = f"https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/run/"
     headers = {"Authorization": f"Bearer {CLOUDFLARE_AI_TOKEN}"}
     inputs = [{ "role": "system", "content": "You are a friendly assistant that helps write reply for emails" },

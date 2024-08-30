@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import os
 from apps.home  import blueprint
 from apps.ai.gemini_llm import run_gemini_for_3_words, gemini_compose_reply
+from apps.ai.cloudflare_llm import run_llama
 from datetime import datetime, timedelta
 nylas = Client(
     api_key = os.environ.get("NYLAS_API_KEY"),
@@ -85,10 +86,15 @@ def index():
     keywords = list()
     folder_categories=list()
     message_dates = list()
+    i = 1
     for message in messages:
-      keywords.append(run_gemini_for_3_words(message.subject,message.body))
+      if (i <= 10):
+        keywords.append(run_gemini_for_3_words(message.subject,message.body))
+      else:
+        keywords.append(run_llama(message.subject,message.body))
       folder_categories.append(message.folders)
       message_dates.append(datetime.fromtimestamp(int(message.date)).strftime('%d-%m-%Y %H:%M:%S'))
+      i = i+1
     length = len(messages)
     return render_template('home/index.html', segment='index',
                            emails=keywords,messages= messages,

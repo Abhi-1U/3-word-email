@@ -8,74 +8,83 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<div class="flex-container" style="overflow: hidden;"></div>
+<div class="flex-container" style="overflow: hidden;">
     <div class="row">
-        <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
-            <div class="mb-3" style="padding-left: 20px;">
-                You can revoke Nylas Grant for 3 word email or go 
-        <a class="btn btn-outline-primary my-2 my-sm-0" href='/'> Back</a>
-                
-            </div>
+      <div class="col-md-12  flex-container bg-light  md-block accordionblock" >
+          <div class="mb-3" style="padding-left: 20px;">
+            <form class="form-inline my-2 my-lg-0" >
+                <div class="mb-3" style="padding-left: 20px;">
+                  You can revoke Nylas Grant for 3 word email or go 
+                  <a class="btn btn-outline-primary my-2 my-sm-0" href='/'> Back</a>
+                </div>
+                </form>
+          </div>
             <ul class="nav flex-column">
-                <button class="accordion" id="accordion">
+                <li >
+                  <button class="accordion">
                     <div class="threewords"><b>Revoke Nylas Grant</b></div> 
                     <br/>
-                    <span class="categories">
-                    3 word email | Settings <br/> 
-                    ★ DISCLAIMER SYSTEM | At 29-08-2024</span></button>
-                <div class="panel" style="max-height: fit-content;">
-                    <p>Subject :Revoke Nylas Grant</p><br/>
-                    <form class="form-inline my-2 my-lg-0" method="POST" action="/revoke">
-                        <div class="mb-3">
-                            <b>Revoke Nylas Grant :</b><br/>
+                    3 word email | Settings<br/>
+                    <span class="category"> 
+                      ★ DISCLAIMER SYSTEM | At 29-08-2024</span></button>
+                  <div class="panel" style="max-height: fit-content;">
+                    <p> Subject : Revoke Nylas Grant</p><br/>
+                      <form class="form-inline my-2 my-lg-0" method="POST" action="/revoke">
+                      <div class="mb-3" >
+                        <b>Revoke Nylas Grant :</b><br/>
                             <input type="text" hidden id="delete_confirmation" name="delete_confirmation" value="TRUE" />
                             <p>Your Nylas grant will be revoked from 3 word email and will log you out of this application.<br/>
                             If you want to use this app again you will have to re-authenticate with nylas.<br/>
                             Proceed with caution.</p>
+                          
                             <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">revoke grant</button>
-                        </div>
+                          </div>
                         </form>
-                </div>
-            </ul>
+                      
+                    </div>   
+                </li> 
+             </ul>
         </div>
-    </div>
-</div>
-<script>
-  var acc = document.getElementsByClassName("accordion");
-  var categories = document.getElementsByClassName("category");
-  for (var j = 0;j<categories.length;j++) {
-    var cat_text = categories[j].textContent;
-    const regex1 = "UPDATES";
-    const regex2 = "FORUM";
-    const regex3 = "PROMOTIONS";
-    const regex4 = "SOCIAL";
-    const regex5 = "DISCLAIMER";
-    const regex6 = "LICENSE";
-    if (cat_text.match(regex1) != null) {
-      acc[j].style.background = '#FFFAA0';
-      acc[j].style.color = '#000000';
+      </div>
+  </div>
+  
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var categories = document.getElementsByClassName("category");
+    for (var j = 0;j<categories.length;j++) {
+      var cat_text = categories[j].textContent;
+      const regex1 = "UPDATES";
+      const regex2 = "FORUM";
+      const regex3 = "PROMOTIONS";
+      const regex4 = "SOCIAL";
+      const regex5 = "DISCLAIMER";
+      const regex6 = "LICENSE";
+      if (cat_text.match(regex1) != null) {
+        acc[j].style.background = '#FFFAA0';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex2) != null) {
+        acc[j].style.background = '#C3B1E1';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex3) != null) {
+        acc[j].style.background = '#C1E1C1';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex4) != null) {
+        acc[j].style.background = '#A7C7E7';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex5) != null) {
+        acc[j].style.background = '#FAA0A0';
+        acc[j].style.color = '#000000';
+      }
+      if (cat_text.match(regex6) != null) {
+        acc[j].style.background = '#FAC898';
+        acc[j].style.color = '#000000';
+      }
     }
-    if (cat_text.match(regex2) != null) {
-      acc[j].style.background = '#C3B1E1';
-      acc[j].style.color = '#000000';
-    }
-    if (cat_text.match(regex3) != null) {
-      acc[j].style.background = '#C1E1C1';
-      acc[j].style.color = '#000000';
-    }
-    if (cat_text.match(regex4) != null) {
-      acc[j].style.background = '#A7C7E7';
-      acc[j].style.color = '#000000';
-    }
-    if (cat_text.match(regex5) != null) {
-      acc[j].style.background = '#FAA0A0';
-      acc[j].style.color = '#000000';
-    }
-    if (cat_text.match(regex6) != null) {
-      acc[j].style.background = '#FAC898';
-      acc[j].style.color = '#000000';
-    }
-  }
-</script>
+  </script>
 
-{% endblock content %}
+
+{% endblock %}
