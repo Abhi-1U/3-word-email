@@ -88,7 +88,7 @@ def index():
     message_dates = list()
     i = 1
     for message in messages:
-      if (i <= 10):
+      if (i <= 5):
         keywords.append(run_gemini_for_3_words(message.subject,message.body))
       else:
         keywords.append(run_llama(message.subject,message.body))

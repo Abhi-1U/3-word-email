@@ -1,5 +1,5 @@
-# 3 word email : Browse through your E-mails quickly.
 
+# 3 word email : Browse through your E-mails quickly. <a href='https://abhi-1u-3-word-email.hf.space/'><img src='https://abhi-1u.github.io/template_samples/img/3-word-email.jpeg' align="right" alt="texor package hex sticker with icons showing transistion from PDF documents to web pages." width="120" /></a>
 
 There are many ways one can categorize the mails, one common way is to categorize all the emails into seperate folders in the order of their priority.
 However, this is more of a hassle where you need to check each folder to lookout for the email wrongly categorized, which could have been important you.
