@@ -5,6 +5,8 @@ import os
 from apps.home  import blueprint
 from apps.ai.gemini_llm import run_gemini_for_3_words, gemini_compose_reply
 from apps.ai.cloudflare_llm import run_llama
+from apps.home.models import ThreeWords
+from apps import db
 from datetime import datetime, timedelta
 nylas = Client(
     api_key = os.environ.get("NYLAS_API_KEY"),
@@ -88,10 +90,22 @@ def index():
     message_dates = list()
     i = 1
     for message in messages:
-      if (i <= 5):
-        keywords.append(run_gemini_for_3_words(message.subject,message.body))
+      cache = ThreeWords.query.filter_by(grant_id=session["grant_id"],message_id = message.id ).all()
+      if (len(cache) == 0):
+        if (i <= 5):
+          keyword = run_gemini_for_3_words(message.subject,message.body)
+          keywords.append(keyword)
+          new_kw = ThreeWords(session["grant_id"],message.id, keyword)
+          db.session.add(new_kw)	
+          db.session.commit()
+        else:
+          keyword = run_llama(message.subject,message.body)
+          keywords.append(keyword)
+          new_kw = ThreeWords(session["grant_id"],message.id, keyword)
+          db.session.add(new_kw)	
+          db.session.commit()
       else:
-        keywords.append(run_llama(message.subject,message.body))
+        keywords.append(cache[0].three_words)
       folder_categories.append(message.folders)
       message_dates.append(datetime.fromtimestamp(int(message.date)).strftime('%d-%m-%Y %H:%M:%S'))
       i = i+1

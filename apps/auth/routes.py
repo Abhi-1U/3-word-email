@@ -5,7 +5,8 @@ from nylas import Client
 import os
 from apps.auth  import blueprint
 from flask import session,render_template
-
+from apps.home.models import ThreeWords
+from apps import db
 
 nylas = Client(
     api_key = os.environ.get("NYLAS_API_KEY"),
@@ -42,6 +43,10 @@ def revoke():
   if request.method == "POST":
     if request.form['delete_confirmation'] == "TRUE":
       try:
+        cache = ThreeWords.query.filter_by(grant_id = session["grant_id"]).all()
+        for element in cache:
+          db.session.delete(element)
+        db.session.commit()
         delete_response = nylas.grants.destroy(session["grant_id"])
         session.clear()
         return redirect('/')
