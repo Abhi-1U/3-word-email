@@ -14,15 +14,16 @@ get caught up Looking at old/irrelevant emails repeateadly.
 ## Features
 
 1. Use of nylas email API using Python SDK to integrate email data securely into the flask web application.
-2. No caching/storing of the email data to ensure best data security and regulatory compliances.
+2. No caching/storing of the email data (other than 3 words) to ensure best data security and regulatory compliances.
 3. Use of Google gemini 1.5 flash and @cf/meta/llama-3-8b-instruct large language models for the generation of the 3 words and replies.
 4. Simple, Intuitive and screen width responsive web interface with bootstrap 5.
 5. View full body of the email with HTML markups.
 6. Time based email viewer to reduce bombardment, while promoting habit to check email daily and excercise on the important emails on the same day.
 7. Reply with 3 words ( or a few more if you want to) ! (LLM will automatically generate a mail for you !)
-8. Revoke Nylas grant and clear session keys.
+8. Revoke Nylas grant, cached 3 words and clear session keys.
 9. Colorful accordion cards themed as per the email folder.
 10. Mobile ready Progressive Web Application.
+11. Cache DB to store 3 words of each email and enhance performance.
 
 ## Future Improvements
 

@@ -41,7 +41,7 @@ def authorized():
 @blueprint.route("/revoke", methods=["GET","POST"])
 def revoke():
   if request.method == "POST":
-    if request.form['delete_confirmation'] == "TRUE":
+    if request.form['delete_confirmation'] == "TRUE" and session.get("grant_id") is not None:
       try:
         cache = ThreeWords.query.filter_by(grant_id = session["grant_id"]).all()
         for element in cache:

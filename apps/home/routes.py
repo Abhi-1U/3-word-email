@@ -25,7 +25,7 @@ def reply():
       try:
         message = nylas.messages.find(session["grant_id"], message_id)
         ai_generated_reply = gemini_compose_reply(reply,message.data.body)
-        threewords = run_gemini_for_3_words("Re :"+message.data.subject,ai_generated_reply)
+        threewords = ThreeWords.query.filter_by(grant_id=session["grant_id"],message_id = message_id ).all()[0]
         date=datetime.fromtimestamp(int(message.data.date)).strftime('%d-%m-%Y %H:%M:%S')
         return render_template('home/reply.html',reply = ai_generated_reply,threewords= threewords,
                              message=message.data,folder=message.data.folders,date=date)
@@ -91,7 +91,7 @@ def index():
     i = 1
     for message in messages:
       cache = ThreeWords.query.filter_by(grant_id=session["grant_id"],message_id = message.id ).all()
-      if (len(cache) == 0):
+      if (len(cache) == 0) or (cache[0].three_words == ''):
         if (i <= 5):
           keyword = run_gemini_for_3_words(message.subject,message.body)
           keywords.append(keyword)
@@ -104,11 +104,11 @@ def index():
           new_kw = ThreeWords(session["grant_id"],message.id, keyword)
           db.session.add(new_kw)	
           db.session.commit()
+        i = i+1
       else:
         keywords.append(cache[0].three_words)
       folder_categories.append(message.folders)
       message_dates.append(datetime.fromtimestamp(int(message.date)).strftime('%d-%m-%Y %H:%M:%S'))
-      i = i+1
     length = len(messages)
     return render_template('home/index.html', segment='index',
                            emails=keywords,messages= messages,
