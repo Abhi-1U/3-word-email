@@ -1,0 +1,42 @@
+{
+    "short_name": "3 word email",
+    "name": "3 word email",
+    "icons": [
+      {
+        "src": "../logo/logo64.png",
+        "sizes": "64x64",
+        "type": "image/png"
+      },
+      {
+        "src": "../logo/logo192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "../logo/logo512.png", 
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "scope": "/",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#041A2F",
+    "background_color": "#ffffff",
+    "screenshots": [
+        {
+         "src": "../img/wide.png",
+          "sizes": "2560x1327",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "3 word email desktop"
+        },
+        {
+            "src": "../img/narrow.png",
+             "sizes": "521x1051",
+             "type": "image/png",
+             "form_factor": "narrow",
+             "label": "3 word email mobile"
+           }
+    ]
+  }

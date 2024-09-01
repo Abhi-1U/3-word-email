@@ -15,7 +15,15 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link rel="manifest" href="../../static/script/manifest.json">
     <link rel="stylesheet" href="../../static/css/dashboard.css" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/serviceworker.js');
+        });
+      }
+    </script>
 
     <title>3 word email - {% block title %}{% endblock %} </title>
     {% block stylesheets %}
@@ -45,5 +53,12 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/serviceworker.js');
+        });
+      }
+    </script>
   </body>
 </html>

@@ -22,6 +22,7 @@ get caught up Looking at old/irrelevant emails repeateadly.
 7. Reply with 3 words ( or a few more if you want to) ! (LLM will automatically generate a mail for you !)
 8. Revoke Nylas grant and clear session keys.
 9. Colorful accordion cards themed as per the email folder.
+10. Mobile ready Progressive Web Application.
 
 ## Future Improvements
 

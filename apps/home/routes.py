@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, jsonify
+from flask import render_template, request, redirect, session, jsonify, make_response, send_file
 from nylas import Client
 from datetime import datetime, timedelta
 import os
@@ -102,3 +102,10 @@ def index():
                            td=td, folders=folder_categories)
   except Exception as e:
     return f'{e}'  
+  
+
+@blueprint.route('/serviceworker.js',methods=["GET","POST"])
+def get_service_worker():
+    response = make_response(send_file('./static/script/serviceworker.js'))
+    response.headers['Content-Type'] = 'application/javascript'
+    return response
