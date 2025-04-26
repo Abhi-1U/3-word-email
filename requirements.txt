@@ -22,7 +22,7 @@ greenlet==3.0.3
 grpcio==1.66.1
 grpcio-status==1.62.3
 gunicorn==23.0.0
-h11==0.14.0
+h11==0.16.0
 httplib2==0.22.0
 idna==3.8
 itsdangerous==2.2.0
