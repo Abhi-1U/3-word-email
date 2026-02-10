@@ -34,7 +34,7 @@ mypy-extensions==1.0.0
 nylas==6.3.0
 packaging==24.1
 proto-plus==1.24.0
-protobuf==4.25.4
+protobuf==5.29.6
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pydantic==2.8.2
